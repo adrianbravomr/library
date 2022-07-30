@@ -1,0 +1,321 @@
+:root{
+    --book-bg: rgb(131, 165, 232);
+}
+
+body{
+    font-family: sans-serif;
+    margin: 0px;
+    background-color: rgb(229, 231, 237);
+}
+
+.container{
+    position: absolute;
+    display: grid;
+    width: 100%;
+    height: 100%;
+    grid-template-rows: 80px 1fr;
+    grid-template-areas: 
+    "header"
+    "content";
+}
+
+.header{
+    padding-left: 20px;
+    padding-right: 20px;
+    grid-area: header;
+    background-color:white;
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    font-size: 2rem;
+    letter-spacing: -0.13rem;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.179);
+}
+.header::before{
+    content: "📚";
+    color: rgb(0, 187, 140);
+    font-size: 50px;
+    transform: rotate3d(20deg,20deg,20deg);
+}
+
+.library{
+    padding: 20px;
+    padding-top: 30px;
+    grid-area: content;
+    display: flex;
+    flex-flow: row wrap;
+    gap: 20px;
+    align-content: flex-start;
+    justify-content: flex-start;
+    transition: all 0.3s ease-in-out;
+}
+
+#newbook{
+    margin: 20px;
+    grid-area: content;
+    width: 70px;
+    height: 70px;
+    align-self: flex-end;
+    justify-self: right;
+    grid-area: content;
+    border: 0px solid transparent;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    background-color: rgb(93, 157, 246);
+    color: white;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.494);
+    transition: 0.3s;
+}
+
+#newbook:hover{
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.394);
+    background-color: rgb(0, 85, 255);
+    transform: translateY(-5px);
+    cursor: pointer;
+} 
+
+#newbook:active{
+    box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.994);
+    transform: translateY(5px);
+    filter: contrast(200%) brightness(50%);
+    cursor: pointer;
+} 
+
+.book{
+    width: 180px;
+    height: 280px;
+    position: relative;
+    background-color: var(--book-bg);
+    border-radius: 5px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.7);
+    transition:all 0.2s;
+    animation: book 0.5s ease-in-out;
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    transition: all 0.3 ease-in-out;
+}
+
+.book:hover{
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.394);
+    transform: translateY(-5px);
+    mix-blend-mode: multiply;
+}
+
+@keyframes book {
+    0% {transform:translateX(1000px);}
+    100%{transform:translateX(0px);}
+}
+
+.book-cover{
+    background-color: black;
+    color: white;
+}
+
+.book>img{
+    z-index: 2;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transition: all 0.2s;
+}
+/*
+
+.book>img:hover{
+    opacity: 20%;;
+}
+*/
+
+.book>img.cover-hover{
+    opacity: 0.2;
+    z-index: 0;
+}
+
+.book-container{
+    padding: 10px;
+    height: 93%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1.3rem auto 2rem;
+    grid-template-areas: 
+    "author author remove"
+    "title title title"
+    "isRead . pages";
+}
+
+
+.book-title{
+    display: none;
+    grid-area: title;
+    align-self: center;
+    font-size: 1.5rem;
+    text-align: center;
+    font-weight: bold;
+    letter-spacing: 0.2rem;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.title-show{
+    display: block;
+}
+
+.book-title:hover{
+    text-shadow: 0px 0px 10px rgb(255, 255, 255);
+}
+
+
+.book-author{
+    grid-area: author;
+    font-style: italic;
+}
+
+.book-summary{
+    grid-area: title;
+    display: none;
+}
+
+.summary-show{
+    overflow: auto;
+    display: block;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.book-pages{
+    grid-area:pages;
+    text-align: right;
+}
+
+.book-pages::before{
+    content: "Pages\a";
+    white-space: pre;
+    font-size: 0.7rem;
+}
+
+.readButton{
+    width: 70px;
+    height: 25px;
+    border-radius: 7px;
+    border: 0px;
+    grid-area: isRead;
+    opacity: 0.4;
+    font-weight: bold;
+    color: white;
+    align-self: flex-end;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.readButton:hover{
+    opacity: 1;
+    transition: all 0.2s;
+}
+
+.isRead-show{
+    opacity: 0.6;
+}
+
+.finished{
+    background-color: green;
+}
+
+.not-read{
+    background-color: red;
+}
+
+.remove-button{
+    grid-area:remove;
+    opacity: 0;
+    cursor: pointer;
+    font-weight: bold;
+    color: white;
+    padding-bottom:20px;
+    position: absolute;
+    background-color: transparent;
+    right: 0;
+    top: 0;
+    height: 50px;
+    width: 100%;
+    border: 0px;
+    z-index: 2;
+}
+
+.remove-show{
+    opacity: 0.7;
+    background:linear-gradient(rgb(206, 20, 20) 30%,rgba(255,255,255,0) 85% ,rgba(255,255,255,0) 100%);
+    transition: 0.1s ease-in-out;
+}
+
+.remove-show:hover{
+    opacity: 1;
+}
+
+.input{
+    height: 2rem;
+    padding: 5px;
+    padding-left: 10px;
+    border-radius: 5px;
+    border: 0px solid lightgray;
+}
+
+#isRead{
+    width: 20px;
+}
+
+.addBook-container{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.90);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    animation: summary 0.1s ease-in-out;
+}
+
+@keyframes summary {
+    0% {background-color:rgba(0, 0, 0, 0.00);}
+    100% {background-color: rgba(0, 0, 0, 0.90);}
+}
+
+.form{
+    right: 50%;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: whitesmoke;
+    padding: 20px;
+    border-radius: 10px;
+    animation: form 0.3s ease-out;
+}
+
+.form>legend{
+    text-align: center;
+    font-weight: bold;
+}
+
+.form-button{
+    width: 150px;
+    height: 40px;
+    font-size: 1.2rem;
+    align-self: center;
+    cursor: pointer;
+    background-color: rgb(93, 0, 255);
+    color: white;
+    border: 0px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.checkbox,.color{
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@keyframes form {
+    0% {opacity: 0%;transform: translate(0px,-100px);}
+    100% {opacity: 100%;transform: translate(0px,0px);}
+}
