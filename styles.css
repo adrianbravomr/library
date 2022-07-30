@@ -197,30 +197,41 @@ body{
     border-radius: 7px;
     border: 0px;
     grid-area: isRead;
-    opacity: 0.4;
     font-weight: bold;
     color: white;
+    background-color: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
     align-self: flex-end;
     cursor: pointer;
     z-index: 2;
 }
 
 .readButton:hover{
-    opacity: 1;
+    background-color: rgba(0, 0, 0, 0.72);
     transition: all 0.2s;
 }
 
 .isRead-show{
-    opacity: 0.6;
+    background-color: rgba(0, 0, 0, 0.652);
 }
+
+.isRead-show.finished{
+    background-color: rgba(10, 209, 10, 0.7);
+}
+
 
 .finished{
-    background-color: green;
+    background-color: rgba(0, 255, 0, 0.4);
 }
 
-.not-read{
-    background-color: red;
+.readButton:hover.finished{
+    background-color: rgba(10, 209, 10, 0.9);
 }
+/*
+.not-read{
+    background-color: rgb(255, 0, 0);
+}*/
 
 .remove-button{
     grid-area:remove;
