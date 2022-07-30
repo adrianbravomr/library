@@ -255,6 +255,19 @@ body{
     padding-left: 10px;
     border-radius: 5px;
     border: 0px solid lightgray;
+    font-size: 1rem;
+}
+
+input::placeholder{
+    opacity: 0.5;
+}
+
+input:required{
+    border: 2px solid gray;
+}
+
+input:required::placeholder{
+    opacity: 0.9;
 }
 
 #isRead{
@@ -288,6 +301,7 @@ body{
     padding: 20px;
     border-radius: 10px;
     animation: form 0.3s ease-out;
+    z-index: 20;
 }
 
 .form>legend{

@@ -40,7 +40,9 @@ function formInput(type,placeholder='',required=false){
     if (type=='url') formIn.setAttribute("id","Cover");
     else formIn.setAttribute("id",placeholder);
     formIn.setAttribute("name",placeholder);
-    formIn.setAttribute("placeholder",placeholder);
+    let desc=placeholder;
+    if(required)desc=`${placeholder}*`;
+    formIn.setAttribute("placeholder",desc);
     if(required==true){formIn.setAttribute("required",'required')};
     return formIn;
 }
@@ -70,6 +72,14 @@ function addBookForm(){
     form.addEventListener('submit', (event) => {
         event.preventDefault();
         submitForm(form);
+    });
+
+    container.addEventListener('click',(event)=>{
+        if(event.target.classList.value=="addBook-container")document.querySelector('.addBook-container').remove();
+    })
+
+    container.addEventListener('keydown',(event)=>{
+        if(event.key=='Escape')document.querySelector('.addBook-container').remove();   
     });
 
     let legend = document.createElement("legend");
@@ -106,6 +116,8 @@ function addBookForm(){
     let view = document.querySelector(".container");
 
     view.append(container);
+
+    titleIn.focus();
 }
 
 function bookData(data,classes=''){
